@@ -1,0 +1,111 @@
+{
+  "name": "wa-boss",
+  "version": "1.0.0",
+  "description": "\"whatsapp automation with react js electorn and backend in node js",
+  "keywords": [
+    "react",
+    "nodejs",
+    "eclectron",
+    "whatsapp"
+  ],
+  "license": "ISC",
+  "author": "krishna kumar",
+  "type": "commonjs",
+  "main": "start.js",
+  "scripts": {
+    "start": "electron .",
+    "vite:dev": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run vite:dev\" \"electron .\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder",
+    "build:win": "node convert-cert.js && electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "compile:bytecode": "electorn build-bytecode.js"
+  },
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
+    "electron-icon-maker": "^0.0.5"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.13",
+    "auto-launch": "^5.0.6",
+    "bytenode": "^1.5.7",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "electron-store": "^10.0.1",
+    "electronmon": "^2.0.3",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "node-machine-id": "^1.1.12",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "sqlite3": "^5.1.7",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "com.waboss.app",
+    "productName": "waboss",
+    "copyright": "© 2025 Krishna Kumar",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "start.js",
+      "main.jsc",
+      "server.jsc",
+      "controller/**/*.jsc",
+      "assets/**/*",
+      "build/**/*",
+      "uploads/**/*",
+      "preload.js",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icons/win/icon.ico",
+      "signAndEditExecutable": true,
+      "signtoolOptions": {
+        "certificateFile": "certificate.pfx",
+        "certificatePassword": "1234",
+        "publisherName": "Krishna Kumar"
+      }
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "license": "license.md",
+      "installerIcon": "assets/icons/win/icon.ico",
+      "uninstallerIcon": "assets/icons/win/icon.ico",
+      "createDesktopShortcut": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icons/mac/icon.icns",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "gatekeeperAssess": false
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "assets/icons/png/512x512.png",
+      "category": "Utility"
+    }
+  },
+  "publish": {
+    "provider": "github",
+    "repo": "WABoss",
+    "owner": "ifastkrishna",
+    "releaseType": "draft"
+  }
+}

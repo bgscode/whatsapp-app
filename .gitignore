@@ -1,0 +1,20 @@
+# Ignore dist folder
+dist/
+
+# Ignore WA_auth
+WA_auth/
+
+# Ignore node_modules
+node_modules/
+
+
+# Ignore build folder
+build/
+
+# Ignore .db files
+*.db
+
+# # Ignore .jsc files
+# *.jsc
+
+
